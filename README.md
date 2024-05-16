@@ -1,8 +1,11 @@
 # Trabalho Prático – Aplicação Web em Jakarta EE, usando a framework Spring 7 valores distribuídos da seguinte forma:
 
 3.5 – Atribuídos à funcionalidade e interface do trabalho.
+
 1.0 – Gestão de sessões.
+
 1.0 – Mecanismos de segurança.
+
 1.5 – Relatório
 
 Data de entrega pelo Moodle: até às 23h59 de 1 de Junho (Grupos de 3 alunos).
