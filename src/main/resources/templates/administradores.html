@@ -2,28 +2,87 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Lista de Administradores</title>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <h1>Lista de Administradores</h1>
+
 <table border="1">
     <thead>
     <tr>
         <th>Número</th>
         <th>Nome</th>
-        <th>Morada</th>
         <th>Email</th>
+        <th>Morada</th>
         <th>Telefone</th>
     </tr>
+    <tr id="filterRow">
+        <td><input type="text" class="filterInput" data-column="0" placeholder="Filtrar por Número"></td>
+        <td><input type="text" class="filterInput" data-column="1" placeholder="Filtrar por Nome"></td>
+        <td><input type="text" class="filterInput" data-column="2" placeholder="Filtrar por Email"></td>
+        <td><input type="text" class="filterInput" data-column="3" placeholder="Filtrar por Morada"></td>
+        <td><input type="text" class="filterInput" data-column="4" placeholder="Filtrar por Telefone"></td>
+    </tr>
     </thead>
-    <tbody>
+    <tbody id="administradoresTableBody">
     <tr th:each="administrador : ${administradores}">
         <td th:text="${administrador.numeroAdmin}"></td>
         <td th:text="${administrador.nome}"></td>
-        <td th:text="${administrador.morada}"></td>
         <td th:text="${administrador.email}"></td>
+        <td th:text="${administrador.morada}"></td>
         <td th:text="${administrador.telefone}"></td>
+        <td>
+            <form action="/admin/removerAdministrador" method="post">
+                <input type="hidden" name="id" th:value="${administrador.numeroAdmin}">
+                <button type="submit">Remover</button>
+            </form>
+            <a th:href="@{/admin/editAdministrador/{adminId}(adminId=${administrador.numeroAdmin})}">Edit</a>
+        </td>
     </tr>
     </tbody>
 </table>
+
+<script>
+    $(document).ready(function() {
+
+        // Função para filtrar administradores
+        function filterAdministradores() {
+            // Cria um objeto com os filtros
+            var filters = {};
+            // Para cada input de filtro, guarda o valor no objeto de filtros
+            $('.filterInput').each(function() {
+                var column = $(this).data('column');
+                var filterText = $(this).val().toLowerCase();
+                filters[column] = filterText;
+            });
+
+            // Para cada linha da tabela, verifica se deve mostrar ou esconder
+            $('#administradoresTableBody tr').each(function() {
+                var showRow = true;
+                var row = $(this);
+                // Para cada filtro, verifica se a célula contém o texto do filtro
+                $.each(filters, function(columnIndex, filterText) {
+                    // Obtém o texto da célula
+                    var cellText = row.find('td:nth-child(' + (parseInt(columnIndex) + 1) + ')').text().toLowerCase();
+                    if (!cellText.includes(filterText)) {
+                        showRow = false;
+                        return false;
+                    }
+                });
+                if (showRow) {
+                    row.show();
+                } else {
+                    row.hide();
+                }
+            });
+        }
+
+        // Event listener para os inputs dos filtros
+        $(document).on('input', '.filterInput', function() {
+            filterAdministradores();
+        });
+    });
+</script>
 </body>
 </html>

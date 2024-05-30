@@ -2,28 +2,81 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Lista de Professores</title>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <h1>Lista de Professores</h1>
+
 <table border="1">
     <thead>
     <tr>
         <th>Número</th>
         <th>Nome</th>
-        <th>Morada</th>
         <th>Email</th>
+        <th>Morada</th>
         <th>Telefone</th>
     </tr>
+    <tr id="filterRow">
+        <td><input type="text" class="filterInput" data-column="0" placeholder="Filtrar por Número"></td>
+        <td><input type="text" class="filterInput" data-column="1" placeholder="Filtrar por Nome"></td>
+        <td><input type="text" class="filterInput" data-column="2" placeholder="Filtrar por Email"></td>
+        <td><input type="text" class="filterInput" data-column="3" placeholder="Filtrar por Morada"></td>
+        <td><input type="text" class="filterInput" data-column="4" placeholder="Filtrar por Telefone"></td>
+    </tr>
     </thead>
-    <tbody>
+    <tbody id="professoresTableBody">
     <tr th:each="professor : ${professores}">
         <td th:text="${professor.numeroProf}"></td>
         <td th:text="${professor.nome}"></td>
-        <td th:text="${professor.morada}"></td>
         <td th:text="${professor.email}"></td>
+        <td th:text="${professor.morada}"></td>
         <td th:text="${professor.telefone}"></td>
+        <td>
+            <form action="/prof/removerProfessor" method="post">
+                <input type="hidden" name="id" th:value="${professor.numeroProf}">
+                <button type="submit">Remover</button>
+            </form>
+            <a th:href="@{/prof/editProfessor/{profId}(profId=${professor.numeroProf})}">Edit</a>
+        </td>
     </tr>
     </tbody>
 </table>
+
+<script>
+    $(document).ready(function() {
+        // Função para filtrar professores
+        function filterProfessors() {
+            var filters = {};
+            $('.filterInput').each(function() {
+                var column = $(this).data('column');
+                var filterText = $(this).val().toLowerCase();
+                filters[column] = filterText;
+            });
+
+            $('#professoresTableBody tr').each(function() {
+                var showRow = true;
+                var row = $(this);
+                $.each(filters, function(columnIndex, filterText) {
+                    var cellText = row.find('td:nth-child(' + (parseInt(columnIndex) + 1) + ')').text().toLowerCase();
+                    if (!cellText.includes(filterText)) {
+                        showRow = false;
+                        return false;
+                    }
+                });
+                if (showRow) {
+                    row.show();
+                } else {
+                    row.hide();
+                }
+            });
+        }
+
+        // Event listener para os inputs dos filtros
+        $(document).on('input', '.filterInput', function() {
+            filterProfessors();
+        });
+    });
+</script>
 </body>
 </html>

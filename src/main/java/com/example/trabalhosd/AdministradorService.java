@@ -18,4 +18,16 @@ public class AdministradorService {
     public List<Administrador> listAdministradores() {
         return administradorRepository.findAll();
     }
+
+    public void removerAdministrador(Long adminId) {
+        administradorRepository.deleteById(adminId);
+    }
+
+    public Administrador findAdministradorById(Long userId) {
+        return administradorRepository.findById(userId).orElse(null);
+    }
+
+    public void updateAdministrador(Administrador admin) {
+        administradorRepository.save(admin);
+    }
 }

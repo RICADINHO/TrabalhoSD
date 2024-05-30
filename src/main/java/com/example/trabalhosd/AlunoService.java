@@ -18,4 +18,16 @@ public class AlunoService {
     public List<Aluno> listAlunos() {
         return alunoRepository.findAll();
     }
+
+    public void removerAluno(Long alunoId) {
+        alunoRepository.deleteById(alunoId);
+    }
+
+    public Aluno findAlunoById(Long alunoId) {
+        return alunoRepository.findById(alunoId).orElse(null);
+    }
+
+    public void updateAluno(Aluno aluno) {
+        alunoRepository.save(aluno);
+    }
 }

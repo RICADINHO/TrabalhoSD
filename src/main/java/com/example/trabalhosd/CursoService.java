@@ -17,4 +17,17 @@ public class CursoService {
     public List<Curso> listCursos() {
         return cursoRepository.findAll();
     }
+
+    public void removerCurso(Long cursoId) {
+        cursoRepository.deleteById(cursoId);
+    }
+
+    public Curso findCursoById(Long cursoId) {
+        return cursoRepository.findById(cursoId).orElse(null);
+    }
+
+    public void updateCurso(Curso curso) {
+        cursoRepository.save(curso);
+    }
+
 }

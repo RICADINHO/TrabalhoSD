@@ -3,10 +3,7 @@ package com.example.trabalhosd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +30,24 @@ public class AdministradorController {
         List<Administrador> administradores = administradorService.listAdministradores();
         model.addAttribute("administradores", administradores);
         return "administradores";
+    }
+
+    @PostMapping("/removerAdministrador")
+    public String removerAdministrador(@RequestParam("id") Long adminId) {
+        administradorService.removerAdministrador(adminId);
+        return "redirect:/admin/administradores";
+    }
+
+    @GetMapping("/editAdministrador/{adminId}")
+    public String showEditForm(@PathVariable Long adminId, Model model) {
+        Administrador admin = administradorService.findAdministradorById(adminId);
+        model.addAttribute("admin", admin);
+        return "editAdministrador";
+    }
+
+    @PostMapping("/editAdministrador")
+    public String editAdministrador(@ModelAttribute Administrador admin) {
+        administradorService.updateAdministrador(admin);
+        return "redirect:/admin/administradores";
     }
 }

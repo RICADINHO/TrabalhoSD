@@ -32,4 +32,23 @@ public class AlunoController {
         model.addAttribute("alunos", alunos);
         return "alunos";  // Nome do template Thymeleaf sem a extensão .html
     }
+
+    @PostMapping("/removerAluno")
+    public String removerProfessor(@RequestParam("id") Long alunoId) {
+        alunoService.removerAluno(alunoId);
+        return "redirect:/aluno/alunos";
+    }
+
+    @GetMapping("/editAluno/{alunoId}")
+    public String showEditForm(@PathVariable Long alunoId, Model model) {
+        Aluno aluno = alunoService.findAlunoById(alunoId);
+        model.addAttribute("aluno", aluno);
+        return "editAluno";
+    }
+
+    @PostMapping("/editAluno")
+    public String editAluno(@ModelAttribute Aluno aluno) {
+        alunoService.updateAluno(aluno);
+        return "redirect:/aluno/alunos";
+    }
 }

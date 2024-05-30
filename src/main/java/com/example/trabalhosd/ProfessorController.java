@@ -3,10 +3,7 @@ package com.example.trabalhosd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +31,24 @@ public class ProfessorController {
         List<Professor> professores = professorService.listProfessores();
         model.addAttribute("professores", professores);
         return "professores";  // Nome do template Thymeleaf sem a extensão .html
+    }
+
+    @PostMapping("/removerProfessor")
+    public String removerProfessor(@RequestParam("id") Long profId) {
+        professorService.removerProfessor(profId);
+        return "redirect:/prof/professores";
+    }
+
+    @GetMapping("/editProfessor/{profId}")
+    public String showEditForm(@PathVariable Long profId, Model model) {
+        Professor professor = professorService.findProfessorById(profId);
+        model.addAttribute("prof", professor);
+        return "editProfessor";
+    }
+
+    @PostMapping("/editProfessor")
+    public String editProfessor(@ModelAttribute Professor professor) {
+        professorService.updateProfessor(professor);
+        return "redirect:/prof/professores";
     }
 }

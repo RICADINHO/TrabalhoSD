@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TrabalhoSdApplication {
 
-	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s!", name);
-	}
 	// Para criar as tabelas, basta correr a aplicação
 	public static void main(String[] args) {
 		System.out.println("ola");
