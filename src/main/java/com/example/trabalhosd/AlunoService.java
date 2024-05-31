@@ -15,8 +15,16 @@ public class AlunoService {
     @Autowired
     private AlunoRepository alunoRepository;
 
-    public Aluno save(Aluno aluno) {
-        return alunoRepository.save(aluno);
+    public void save(Aluno aluno) {
+        int b = 0;
+        for(Aluno a : alunoRepository.findAll()){
+            if(aluno.getEmail().equals(a.getEmail())){
+                b = 1;
+                break;
+            }
+        }
+            if(b == 0)
+                alunoRepository.save(aluno);
     }
 
     public List<Aluno> listAlunos() {

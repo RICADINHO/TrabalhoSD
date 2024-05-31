@@ -10,19 +10,23 @@
     <input type="hidden" th:field="*{numeroProf}" />
   <div>
     <label for="nome">Nome:</label>
-    <input type="text" id="nome" th:field="*{nome}" />
+    <input required type="text" id="nome" th:field="*{nome}" />
   </div>
   <div>
     <label for="email">Email:</label>
-    <input type="email" id="email" th:field="*{email}" />
+    <input required type="email" id="email" th:field="*{email}" />
   </div>
   <div>
     <label for="morada">Morada:</label>
-    <input type="text" id="morada" th:field="*{morada}" />
+    <input required type="text" id="morada" th:field="*{morada}" />
   </div>
   <div>
     <label for="telefone">Telefone:</label>
-    <input type="tel" id="telefone" th:field="*{telefone}" />
+    <input required type="tel" id="telefone" th:field="*{telefone}" />
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input required type="tel" id="password" th:field="*{password}" />
   </div>
   <div>
     <button type="submit">Guardar</button>

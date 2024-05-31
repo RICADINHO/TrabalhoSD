@@ -20,12 +20,12 @@
 </ul>
 <form action="/addAlunoToCurso" method="post">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
-    <input type="text" name="alunoId" placeholder="ID do Aluno">
+    <input required type="number" name="alunoId" placeholder="ID do Aluno">
     <button type="submit">Adicionar Aluno</button>
 </form>
 <form action="/removerAlunoFromCurso" method="post">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
-    <input type="text" name="alunoId" placeholder="ID do Aluno">
+    <input required type="number" name="alunoId" placeholder="ID do Aluno">
     <button type="submit">Remover Aluno</button>
 </form>
 
@@ -36,12 +36,12 @@
 </ul>
 <form action="/addProfessorToCurso" method="post">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
-    <input type="text" name="professorId" placeholder="ID do Professor">
+    <input required type="number" name="professorId" placeholder="ID do Professor">
     <button type="submit">Adicionar Professor</button>
 </form>
 <form action="/removerProfessorFromCurso" method="post">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
-    <input type="text" name="professorId" placeholder="ID do Professor">
+    <input required type="number" name="professorId" placeholder="ID do Professor">
     <button type="submit">Remover Professor</button>
 </form>
 

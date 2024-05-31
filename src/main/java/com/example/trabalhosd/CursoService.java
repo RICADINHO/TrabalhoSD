@@ -151,7 +151,8 @@ public class CursoService {
             for (Aluno aluno : alunos) {
                 somaIdades += aluno.getIdade();
             }
-            return somaIdades / alunos.size();
+            if(!alunos.isEmpty())
+                return somaIdades / alunos.size();
         }
         return 0;
     }
