@@ -5,7 +5,8 @@
 </head>
 <body>
 <h1>Editar Professor</h1>
-<form action="#" th:action="@{/prof/editProfessor}" th:object="${prof}" method="post">
+<h2><a href="../../../../../../../../.."> Voltar para traz</a></h2>
+<form action="#" th:action="@{/editProfessor}" th:object="${prof}" method="post">
     <input type="hidden" th:field="*{numeroProf}" />
   <div>
     <label for="nome">Nome:</label>

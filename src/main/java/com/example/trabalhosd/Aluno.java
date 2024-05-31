@@ -19,5 +19,6 @@ public class Aluno {
     String telefone;
     int nota;
     int ano;
+    String password;
 
 }

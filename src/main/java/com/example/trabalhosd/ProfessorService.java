@@ -30,4 +30,8 @@ public class ProfessorService {
     public void updateProfessor(Professor professor) {
         professorRepository.save(professor);
     }
+
+    public long countProfs() {
+        return professorRepository.count();
+    }
 }

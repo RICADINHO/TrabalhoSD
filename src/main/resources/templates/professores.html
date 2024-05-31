@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Lista de Professores</h1>
-
+<h2><a href="../../../../../../../../.."> Voltar para traz</a></h2>
 <table border="1">
     <thead>
     <tr>
@@ -33,11 +33,11 @@
         <td th:text="${professor.morada}"></td>
         <td th:text="${professor.telefone}"></td>
         <td>
-            <form action="/prof/removerProfessor" method="post">
+            <form action="/removerProfessor" method="post">
                 <input type="hidden" name="id" th:value="${professor.numeroProf}">
                 <button type="submit">Remover</button>
             </form>
-            <a th:href="@{/prof/editProfessor/{profId}(profId=${professor.numeroProf})}">Edit</a>
+            <a th:href="@{/editProfessor/{profId}(profId=${professor.numeroProf})}">Edit</a>
         </td>
     </tr>
     </tbody>

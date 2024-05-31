@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(path="/curso")
+//@RequestMapping(path="/curso")
 public class CursoController {
     @Autowired
     private CursoService cursoService;
@@ -22,7 +22,7 @@ public class CursoController {
     @PostMapping(path="/addCurso")
     public String addCurso (@ModelAttribute Curso curso) {
         cursoService.save(curso);
-        return "redirect:/curso/cursos";
+        return "redirect:/cursos";
     }
 
     @GetMapping("/cursos")
@@ -35,7 +35,7 @@ public class CursoController {
     @PostMapping("/removerCurso")
     public String removerProfessor(@RequestParam("id") Long cursoId) {
         cursoService.removerCurso(cursoId);
-        return "redirect:/curso/cursos";
+        return "redirect:/cursos";
     }
 
     @GetMapping("/editCurso/{cursoId}")
@@ -48,6 +48,6 @@ public class CursoController {
     @PostMapping("/editCurso")
     public String editCurso(@ModelAttribute Curso curso) {
         cursoService.updateCurso(curso);
-        return "redirect:/curso/cursos";
+        return "redirect:/cursos";
     }
 }

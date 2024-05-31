@@ -19,5 +19,6 @@ public class Administrador {
     private String email;
     private String telefone;
     private String morada;
+    private String password;
 
 }

@@ -5,7 +5,8 @@
 </head>
 <body>
 <h1>Adicionar Administrador</h1>
-<form action="#" th:action="@{/admin/addAdministrador}" th:object="${Administrador}" method="post">
+<h2><a href="../"> Voltar para traz</a></h2>
+<form action="#" th:action="@{/addAdministrador}" th:object="${Administrador}" method="post">
     <div>
         <label for="nome">Nome:</label>
         <input type="text" id="nome" th:field="*{nome}" />

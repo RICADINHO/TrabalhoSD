@@ -5,7 +5,8 @@
 </head>
 <body>
 <h1>Adicionar Curso</h1>
-<form action="#" th:action="@{/curso/addCurso}" th:object="${Curso}" method="post">
+<h2><a href="../"> Voltar para traz</a></h2>
+<form action="#" th:action="@{/addCurso}" th:object="${Curso}" method="post">
     <div>
         <label for="nome">Nome:</label>
         <input type="text" id="nome" th:field="*{nome}" />

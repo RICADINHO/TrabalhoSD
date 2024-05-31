@@ -5,7 +5,8 @@
 </head>
 <body>
 <h1>Editar Administrador</h1>
-<form action="#" th:action="@{/admin/editAdministrador}" th:object="${admin}" method="post">
+<h2><a href="../../../../../../../../.."> Voltar para traz</a></h2>
+<form action="#" th:action="@{/editAdministrador}" th:object="${admin}" method="post">
     <input type="hidden" th:field="*{numeroAdmin}" />
     <div>
         <label for="nome">Nome:</label>

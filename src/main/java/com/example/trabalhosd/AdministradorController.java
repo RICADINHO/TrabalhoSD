@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(path="/admin")
+//@RequestMapping(path="/admin")
 public class AdministradorController {
     @Autowired
     private AdministradorService administradorService;
@@ -22,7 +22,7 @@ public class AdministradorController {
     @PostMapping(path="/addAdministrador")
     public String addAdministrador (@ModelAttribute Administrador administrador) {
         administradorService.save(administrador);
-        return "redirect:/admin/administradores";
+        return "redirect:/administradores";
     }
 
     @GetMapping("/administradores")
@@ -35,7 +35,7 @@ public class AdministradorController {
     @PostMapping("/removerAdministrador")
     public String removerAdministrador(@RequestParam("id") Long adminId) {
         administradorService.removerAdministrador(adminId);
-        return "redirect:/admin/administradores";
+        return "redirect:/administradores";
     }
 
     @GetMapping("/editAdministrador/{adminId}")
@@ -48,6 +48,6 @@ public class AdministradorController {
     @PostMapping("/editAdministrador")
     public String editAdministrador(@ModelAttribute Administrador admin) {
         administradorService.updateAdministrador(admin);
-        return "redirect:/admin/administradores";
+        return "redirect:/administradores";
     }
 }

@@ -30,4 +30,8 @@ public class AlunoService {
     public void updateAluno(Aluno aluno) {
         alunoRepository.save(aluno);
     }
+
+    public long countAlunos() {
+        return alunoRepository.count();
+    }
 }

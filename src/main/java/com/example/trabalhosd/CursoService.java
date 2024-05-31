@@ -30,4 +30,7 @@ public class CursoService {
         cursoRepository.save(curso);
     }
 
+    public long countCursos() {
+        return cursoRepository.count();
+    }
 }

@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Lista de Administradores</h1>
-
+<h2><a href="../../../../../../../../.."> Voltar para traz</a></h2>
 <table border="1">
     <thead>
     <tr>
@@ -33,11 +33,11 @@
         <td th:text="${administrador.morada}"></td>
         <td th:text="${administrador.telefone}"></td>
         <td>
-            <form action="/admin/removerAdministrador" method="post">
+            <form action="/removerAdministrador" method="post">
                 <input type="hidden" name="id" th:value="${administrador.numeroAdmin}">
                 <button type="submit">Remover</button>
             </form>
-            <a th:href="@{/admin/editAdministrador/{adminId}(adminId=${administrador.numeroAdmin})}">Edit</a>
+            <a th:href="@{/editAdministrador/{adminId}(adminId=${administrador.numeroAdmin})}">Edit</a>
         </td>
     </tr>
     </tbody>
