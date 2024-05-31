@@ -3,6 +3,9 @@ package com.example.trabalhosd;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @Entity
 public class Curso {
@@ -13,11 +16,13 @@ public class Curso {
     private String nome;
     private int horas;
 
-    @ManyToOne
-    private Aluno aluno;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "numeroCurso")
+    private Set<Aluno> alunos = new HashSet<>();
 
-    @ManyToOne
-    private Professor professor;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "numeroCurso")
+    private Set<Professor> professores = new HashSet<>();
 
 
 }

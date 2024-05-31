@@ -12,11 +12,17 @@ Total de Professores: <span th:text="${totalProfs}"></span><br>
 <h2>Quantos cursos totais?</h2><br>
 Total de Cursos: <span th:text="${totalCursos}"></span><br>
 <h2>Qual o curso com mais alunos inscritos?</h2><br>
+Curso com mais alunos inscritos: <span th:text="${cursoComMaisAlunos}"></span><br>
 <h2>Quais os cursos em funcionamento?</h2><br>
+Cursos em funcionamento: <span th:text="${cursosComAlunos}"></span><br>
 <h2>Qual o curso com maior número de horas?</h2><br>
+Curso com maior número de horas: <span th:text="${cursoComMaisHoras}"></span><br>
 <h2>Qual o curso com mais aprovações?</h2><br>
-<h2>Qual a idade média dos alunos que frequentam um dado curso?</h2><br>
+Curso com mais aprovações: <span th:text="${cursoComMaisAprovacoes}"></span><br>
 <h2>Qual a proveniência geográfica dos alunos da escola?</h2><br>
+<ul th:each="entry : ${moradasAlunos}">
+    <li th:text="${entry.key} + ' (' + ${entry.value} + ')'"></li>
+</ul>
 
 </body>
 </html>

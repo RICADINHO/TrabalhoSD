@@ -15,4 +15,5 @@ public class Professor {
     private String email;
     private String telefone;
     private String password;
+
 }

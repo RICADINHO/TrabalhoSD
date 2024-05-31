@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes do Curso</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Detalhes do Curso</h1>
+<a href="/cursos">Voltar para a lista de cursos</a>
+<h2 th:text="'Curso: ' + ${curso.nome}"></h2>
+<p><strong>Número:</strong> <span th:text="${curso.numeroCurso}"></span></p>
+<p><strong>Horas:</strong> <span th:text="${curso.horas}"></span></p>
+<p><strong>Alunos Inscritos:</strong> <span th:text="${curso.alunos.size()}"></span></p>
+<p><strong>Idade média dos alunos:</strong> <span th:text="${idadeMedia}"></span></p>
+
+
+<h3>Alunos</h3>
+<ul>
+    <li th:each="aluno : ${curso.alunos}" th:text="${aluno.nome} + ' (' + ${aluno.numeroAluno} + ')'"></li>
+</ul>
+<form action="/addAlunoToCurso" method="post">
+    <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
+    <input type="text" name="alunoId" placeholder="ID do Aluno">
+    <button type="submit">Adicionar Aluno</button>
+</form>
+<form action="/removerAlunoFromCurso" method="post">
+    <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
+    <input type="text" name="alunoId" placeholder="ID do Aluno">
+    <button type="submit">Remover Aluno</button>
+</form>
+
+<h3>Professores</h3>
+<ul>
+
+    <li th:each="professor : ${curso.professores}" th:text="${professor.nome} + ' (' + ${professor.numeroProf} + ')'"></li>
+</ul>
+<form action="/addProfessorToCurso" method="post">
+    <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
+    <input type="text" name="professorId" placeholder="ID do Professor">
+    <button type="submit">Adicionar Professor</button>
+</form>
+<form action="/removerProfessorFromCurso" method="post">
+    <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
+    <input type="text" name="professorId" placeholder="ID do Professor">
+    <button type="submit">Remover Professor</button>
+</form>
+
+</body>
+</html>

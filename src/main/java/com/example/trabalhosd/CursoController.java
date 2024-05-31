@@ -50,4 +50,38 @@ public class CursoController {
         cursoService.updateCurso(curso);
         return "redirect:/cursos";
     }
+
+    @PostMapping("/addAlunoToCurso")
+    public String addAlunoToCurso(@RequestParam("cursoId") Long cursoId, @RequestParam("alunoId") Long alunoId) {
+        cursoService.addAlunoToCurso(cursoId, alunoId);
+        return "redirect:/cursos";
+    }
+
+    @PostMapping("/addProfessorToCurso")
+    public String addProfessorToCurso(@RequestParam("cursoId") Long cursoId, @RequestParam("professorId") Long professorId) {
+        cursoService.addProfessorToCurso(cursoId, professorId);
+        return "redirect:/cursos";
+    }
+
+    @PostMapping("/removerAlunoFromCurso")
+    public String removerAlunoFromCurso(@RequestParam("cursoId") Long cursoId, @RequestParam("alunoId") Long alunoId) {
+        cursoService.removerAlunoFromCurso(cursoId, alunoId);
+        return "redirect:/cursos";
+    }
+
+    @PostMapping("/removerProfessorFromCurso")
+    public String removerProfessorFromCurso(@RequestParam("cursoId") Long cursoId, @RequestParam("professorId") Long professorId) {
+        cursoService.removerProfessorFromCurso(cursoId, professorId);
+        return "redirect:/cursos";
+    }
+
+    @GetMapping("/cursoMembros/{cursoId}")
+    public String showCursoMembros(@PathVariable Long cursoId, Model model) {
+        Curso curso = cursoService.findCursoById(cursoId);
+        int idadeMedia = cursoService.idadeMediaCurso(cursoId);
+        model.addAttribute("curso", curso);
+        model.addAttribute("idadeMedia", idadeMedia);
+        return "cursoMembros";
+    }
+
 }
