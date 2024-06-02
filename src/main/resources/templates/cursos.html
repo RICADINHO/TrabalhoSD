@@ -29,7 +29,7 @@
         <td th:text="${curso.nome}"></td>
         <td th:text="${curso.horas}"></td>
         <td>
-            <a th:href="@{/cursoMembros/{cursoId}(cursoId=${curso.numeroCurso})}">Detalhes</a>
+            <a class="edit-link" th:href="@{/cursoMembros/{cursoId}(cursoId=${curso.numeroCurso})}">Detalhes</a>
         </td>
         <td class="tabela">
             <form id="remover" action="/removerCurso" method="post">
