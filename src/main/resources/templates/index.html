@@ -1,21 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Escola João Heitor</title>
 </head>
 <body>
+<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+<div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
     <h1>Escola de Música João Heitor</h1>
     <ul>
-        <li><a href="/addAdministrador">Adicionar Administrador</a></li>
-        <li><a href="/administradores">Ver Administradores</a></li>
-        <li><a href="/addProfessor">Adicionar Professor</a></li>
-        <li><a href="/professores">Ver Professores</a></li>
-        <li><a href="/addAluno">Adicionar Aluno</a></li>
-        <li><a href="/alunos">Ver Alunos</a></li>
-        <li><a href="/addCurso">Adicionar Curso</a></li>
-        <li><a href="/cursos">Ver Cursos</a></li>
-        <li><a href="/informacoes">Ver informações sobre a escola</a></li>
+        <li id="texto1"><a href="/addAdministrador">Adicionar Administrador</a></li>
+        <li id="texto2"><a href="/administradores">Ver Administradores</a></li>
+        <li id="texto3"><a href="/addProfessor">Adicionar Professor</a></li>
+        <li id="texto4"><a href="/professores">Ver Professores</a></li>
+        <li id="texto5"><a href="/addAluno">Adicionar Aluno</a></li>
+        <li id="texto6"><a href="/alunos">Ver Alunos</a></li>
+        <li id="texto7"><a href="/addCurso">Adicionar Curso</a></li>
+        <li id="texto8"><a href="/cursos">Ver Cursos</a></li>
+        <li id="texto9"><a href="/informacoes">Ver informações sobre a escola</a></li>
     </ul>
 </body>
+
+<script>
+
+    var x = document.getElementById("ola").textContent;
+    console.log(x);
+    if(x == "[ROLE_ALUNO]"){
+        /*document.getElementById("texto1").style.display = "none";
+        document.getElementById("texto2").style.display = "none";
+        document.getElementById("texto3").style.display = "none";
+        document.getElementById("texto4").style.display = "none";
+        document.getElementById("texto5").style.display = "none";
+        document.getElementById("texto7").style.display = "none";
+        document.getElementById("texto9").style.display = "none";*/
+    }else if(x == "[ROLE_PROFESSOR]"){
+        document.getElementById("texto1").style.display = "none";
+        document.getElementById("texto2").style.display = "none";
+        document.getElementById("texto3").style.display = "none";
+        document.getElementById("texto1").style.display = "none";
+        document.getElementById("texto5").style.display = "none";
+        document.getElementById("texto7").style.display = "none";
+    }
+</script>
+
 </html>

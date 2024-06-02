@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<meta id="apaga" http-equiv="refresh" />
 <head>
     <title>Adicionar Administrador</title>
 </head>
 <body>
 <h1>Adicionar Administrador</h1>
 <h2><a href="../"> Voltar para trás</a></h2>
+<div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
 <form action="#" th:action="@{/addAdministrador}" th:object="${Administrador}" method="post">
     <div>
         <label for="nome">Nome:</label>
@@ -32,4 +34,13 @@
     </div>
 </form>
 </body>
+
+<script>
+    var x = document.getElementById("ola").textContent;
+    console.log(x);
+    if(x != "[ROLE_ADMINISTRADOR]"){
+        document.getElementById("apaga").content = "0; url=../";
+    }
+</script>
+
 </html>

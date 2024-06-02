@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Lista de Cursos</title>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 </head>
 <body>
 <h1>Lista de Cursos</h1>
+<div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
 <h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
 <table border="1">
     <thead>
@@ -29,12 +30,12 @@
         <td>
             <a th:href="@{/cursoMembros/{cursoId}(cursoId=${curso.numeroCurso})}">Detalhes</a>
         </td>
-        <td>
-            <form action="/removerCurso" method="post">
+        <td class="tabela">
+            <form id="remover" action="/removerCurso" method="post">
                 <input type="hidden" name="id" th:value="${curso.numeroCurso}">
                 <button type="submit">Remover</button>
             </form>
-            <a th:href="@{/editCurso/{cursoId}(cursoId=${curso.numeroCurso})}">Edit</a>
+            <a id="edit" th:href="@{/editCurso/{cursoId}(cursoId=${curso.numeroCurso})}">Edit</a>
         </td>
     </tr>
     </tbody>
@@ -74,6 +75,16 @@
             filterCursos();
         });
     });
+
+    // RESOLVER ISTO DEPOIS
+    var x = document.getElementById("ola").textContent;
+    console.log(x);
+    if(x != "[ROLE_ADMINISTRADOR]"){
+        x2 = document.getElementsByClassName("tabela");
+        for (i = 0; i < x2.length; i++) {
+            x2[i].style.display = "none";
+        }
+    }
 </script>
 </body>
 </html>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <meta id="apaga" http-equiv="refresh" />
     <title>Lista de Professores</title>
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+<div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
 <h1>Lista de Professores</h1>
 <h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
 <table border="1">
@@ -16,7 +18,7 @@
         <th>Email</th>
         <th>Morada</th>
         <th>Telefone</th>
-        <th>Password</th>
+        <th class="tabela">Password</th>
     </tr>
     <tr id="filterRow">
         <td><input type="text" class="filterInput" data-column="0" placeholder="Filtrar por Número"></td>
@@ -24,7 +26,7 @@
         <td><input type="text" class="filterInput" data-column="2" placeholder="Filtrar por Email"></td>
         <td><input type="text" class="filterInput" data-column="3" placeholder="Filtrar por Morada"></td>
         <td><input type="text" class="filterInput" data-column="4" placeholder="Filtrar por Telefone"></td>
-        <td><input type="text" class="filterInput" data-column="5" placeholder="Filtrar por Password"></td>
+        <td class="tabela"><input type="text" class="filterInput" data-column="5" placeholder="Filtrar por Password"></td>
     </tr>
     </thead>
     <tbody id="professoresTableBody">
@@ -34,8 +36,8 @@
         <td th:text="${professor.email}"></td>
         <td th:text="${professor.morada}"></td>
         <td th:text="${professor.telefone}"></td>
-        <td th:text="${professor.password}"></td>
-        <td>
+        <td class="tabela" th:text="${professor.password}"></td>
+        <td class="tabela">
             <form action="/removerProfessor" method="post">
                 <input type="hidden" name="id" th:value="${professor.numeroProf}">
                 <button type="submit">Remover</button>
@@ -80,6 +82,20 @@
             filterProfessors();
         });
     });
+
+    x = document.getElementById("ola").textContent;
+    console.log(x);
+    if(x == "[ROLE_ALUNO]" ){
+        document.getElementById("apaga").content = "0; url=../";
+    }
+    if(x != "[ROLE_ADMINISTRADOR]"){
+        x2 = document.getElementsByClassName("tabela");
+        for (i = 0; i < x2.length; i++) {
+            x2[i].style.display = "none";
+        }
+    }
+    //document.getElementById("tabela").style.display = "none";
+
 </script>
 </body>
 </html>

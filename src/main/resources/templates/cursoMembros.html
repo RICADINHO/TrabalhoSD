@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Detalhes do Curso</title>
     <meta charset="UTF-8">
 </head>
 <body>
 <h1>Detalhes do Curso</h1>
+<div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
 <a href="/cursos">Voltar para a lista de cursos</a>
 <h2 th:text="'Curso: ' + ${curso.nome}"></h2>
 <p><strong>Número:</strong> <span th:text="${curso.numeroCurso}"></span></p>
@@ -18,12 +19,12 @@
 <ul>
     <li th:each="aluno : ${curso.alunos}" th:text="${aluno.nome} + ' (' + ${aluno.numeroAluno} + ')'"></li>
 </ul>
-<form action="/addAlunoToCurso" method="post">
+<form class="tabela" action="/addAlunoToCurso" method="post">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
     <input required type="number" name="alunoId" placeholder="ID do Aluno">
     <button type="submit">Adicionar Aluno</button>
 </form>
-<form action="/removerAlunoFromCurso" method="post">
+<form class="tabela" action="/removerAlunoFromCurso" method="post">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
     <input required type="number" name="alunoId" placeholder="ID do Aluno">
     <button type="submit">Remover Aluno</button>
@@ -34,16 +35,26 @@
 
     <li th:each="professor : ${curso.professores}" th:text="${professor.nome} + ' (' + ${professor.numeroProf} + ')'"></li>
 </ul>
-<form action="/addProfessorToCurso" method="post">
+<form class="tabela" action="/addProfessorToCurso" method="post">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
     <input required type="number" name="professorId" placeholder="ID do Professor">
     <button type="submit">Adicionar Professor</button>
 </form>
-<form action="/removerProfessorFromCurso" method="post">
+<form class="tabela" action="/removerProfessorFromCurso" method="post">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
     <input required type="number" name="professorId" placeholder="ID do Professor">
     <button type="submit">Remover Professor</button>
 </form>
 
 </body>
+<script>
+
+    var x = document.getElementById("ola").textContent;
+    if(x != "[ROLE_ADMINISTRADOR]"){
+        x2 = document.getElementsByClassName("tabela");
+        for (i = 0; i < x2.length; i++) {
+            x2[i].style.display = "none";
+        }
+    }
+</script>
 </html>

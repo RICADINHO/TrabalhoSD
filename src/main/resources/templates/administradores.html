@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <meta id="apaga" http-equiv="refresh" />
     <title>Lista de Administradores</title>
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+<div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
 <h1>Lista de Administradores</h1>
 <h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
 <table border="1">
@@ -86,6 +88,12 @@
             filterAdministradores();
         });
     });
+
+    var x = document.getElementById("ola").textContent;
+    console.log(x);
+    if(x != "[ROLE_ADMINISTRADOR]"){
+        document.getElementById("apaga").content = "0; url=../";
+    }
 </script>
 </body>
 </html>

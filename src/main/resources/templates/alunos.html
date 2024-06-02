@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <meta id="apaga" http-equiv="refresh" />
     <title>Lista de Alunos</title>
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <h1>Lista de Alunos</h1>
+<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+<div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 <h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
 <table border="1">
     <thead>
@@ -20,7 +26,7 @@
         <th>Telefone</th>
         <th>Nota</th>
         <th>Ano</th>
-        <th>Password</th>
+        <th class="tabela">Password</th>
     </tr>
     <tr id="filterRow">
         <td><input type="text" class="filterInput" data-column="0" placeholder="Filtrar por Número"></td>
@@ -32,7 +38,7 @@
         <td><input type="text" class="filterInput" data-column="6" placeholder="Filtrar por Telefone"></td>
         <td><input type="text" class="filterInput" data-column="7" placeholder="Filtrar por Nota"></td>
         <td><input type="text" class="filterInput" data-column="8" placeholder="Filtrar por Ano"></td>
-        <td><input type="text" class="filterInput" data-column="9" placeholder="Filtrar por Password"></td>
+        <td class="tabela"><input type="text" class="filterInput" data-column="9" placeholder="Filtrar por Password"></td>
     </tr>
     </thead>
     <tbody id="alunosTableBody">
@@ -46,8 +52,8 @@
         <td th:text="${aluno.telefone}"></td>
         <td th:text="${aluno.nota}"></td>
         <td th:text="${aluno.ano}"></td>
-        <td th:text="${aluno.password}"></td>
-        <td>
+        <td class="tabela" th:text="${aluno.password}"></td>
+        <td class="tabela">
             <form action="/removerAluno" method="post">
                 <input type="hidden" name="id" th:value="${aluno.numeroAluno}">
                 <button type="submit">Remover</button>
@@ -92,6 +98,20 @@
             filterStudents();
         });
     });
+
+    //content="0; url=../"
+
+    var x = document.getElementById("ola").textContent;
+    console.log(x);
+    if(x != "[ROLE_ADMINISTRADOR]"){
+        //document.getElementById("apaga").content = "0; url=../";
+    }
+    if(x != "[ROLE_ADMINISTRADOR]"){
+        x2 = document.getElementsByClassName("tabela");
+        for (i = 0; i < x2.length; i++) {
+            x2[i].style.display = "none";
+        }
+    }
 </script>
 </body>
 </html>
