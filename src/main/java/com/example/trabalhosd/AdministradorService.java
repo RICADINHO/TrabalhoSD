@@ -1,6 +1,7 @@
 package com.example.trabalhosd;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public class AdministradorService {
     private AdministradorRepository administradorRepository;
 
     public Administrador save(Administrador administrador) {
+        String encodedPassword = new BCryptPasswordEncoder().encode(administrador.getPassword());
+        administrador.setPassword(encodedPassword);
         return administradorRepository.save(administrador);
     }
 
@@ -28,6 +31,8 @@ public class AdministradorService {
     }
 
     public void updateAdministrador(Administrador admin) {
+        String encodedPassword = new BCryptPasswordEncoder().encode(admin.getPassword());
+        admin.setPassword(encodedPassword);
         administradorRepository.save(admin);
     }
 }

@@ -4,6 +4,7 @@
     <meta id="apaga" http-equiv="refresh" />
     <title>Lista de Administradores</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="listas.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
@@ -18,7 +19,6 @@
         <th>Email</th>
         <th>Morada</th>
         <th>Telefone</th>
-        <th>Password</th>
     </tr>
     <tr id="filterRow">
         <td><input type="text" class="filterInput" data-column="0" placeholder="Filtrar por Número"></td>
@@ -26,7 +26,6 @@
         <td><input type="text" class="filterInput" data-column="2" placeholder="Filtrar por Email"></td>
         <td><input type="text" class="filterInput" data-column="3" placeholder="Filtrar por Morada"></td>
         <td><input type="text" class="filterInput" data-column="4" placeholder="Filtrar por Telefone"></td>
-        <td><input type="text" class="filterInput" data-column="5" placeholder="Filtrar por Password"></td>
     </tr>
     </thead>
     <tbody id="administradoresTableBody">
@@ -36,13 +35,13 @@
         <td th:text="${administrador.email}"></td>
         <td th:text="${administrador.morada}"></td>
         <td th:text="${administrador.telefone}"></td>
-        <td th:text="${administrador.password}"></td>
         <td>
             <form action="/removerAdministrador" method="post">
+                <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
                 <input type="hidden" name="id" th:value="${administrador.numeroAdmin}">
                 <button type="submit">Remover</button>
             </form>
-            <a th:href="@{/editAdministrador/{adminId}(adminId=${administrador.numeroAdmin})}">Edit</a>
+            <a class="edit-link" th:href="@{/editAdministrador/{adminId}(adminId=${administrador.numeroAdmin})}">Edit</a>
         </td>
     </tr>
     </tbody>

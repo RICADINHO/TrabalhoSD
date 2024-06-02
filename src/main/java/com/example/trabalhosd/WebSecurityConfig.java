@@ -240,8 +240,10 @@ public class WebSecurityConfig {
                         authorizeRequests
                                 //.requestMatchers("/").permitAll()
                                 /*.requestMatchers("/administradores").hasRole("ADMIN")
-                                .requestMatchers("/professores").hasRole("PROFESSOR")
-                                .requestMatchers("/alunos").hasRole("ADMINISTRADOR")*/
+                                .requestMatchers("/professores").hasRole("PROFESSOR")*/
+                                .requestMatchers("/alunos").hasRole("ADMINISTRADOR")
+                                .requestMatchers("/removerAlunoFromCurso").permitAll()
+                                .requestMatchers("/CursoMembros/1").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
@@ -309,7 +311,7 @@ public class WebSecurityConfig {
             if (administrador != null) {
                 System.out.println("entrei adm " + administrador.getEmail());
                 return org.springframework.security.core.userdetails.User.withUsername(administrador.getEmail())
-                        .password(administrador.getPassword())
+                        .password((administrador.getPassword()))
                         .roles("ADMINISTRADOR")
                         .build();
             }

@@ -20,11 +20,13 @@
     <li th:each="aluno : ${curso.alunos}" th:text="${aluno.nome} + ' (' + ${aluno.numeroAluno} + ')'"></li>
 </ul>
 <form class="tabela" action="/addAlunoToCurso" method="post">
+    <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
     <input required type="number" name="alunoId" placeholder="ID do Aluno">
     <button type="submit">Adicionar Aluno</button>
 </form>
 <form class="tabela" action="/removerAlunoFromCurso" method="post">
+    <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
     <input required type="number" name="alunoId" placeholder="ID do Aluno">
     <button type="submit">Remover Aluno</button>
@@ -36,11 +38,13 @@
     <li th:each="professor : ${curso.professores}" th:text="${professor.nome} + ' (' + ${professor.numeroProf} + ')'"></li>
 </ul>
 <form class="tabela" action="/addProfessorToCurso" method="post">
+    <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
     <input required type="number" name="professorId" placeholder="ID do Professor">
     <button type="submit">Adicionar Professor</button>
 </form>
 <form class="tabela" action="/removerProfessorFromCurso" method="post">
+    <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
     <input type="hidden" name="cursoId" th:value="${curso.numeroCurso}">
     <input required type="number" name="professorId" placeholder="ID do Professor">
     <button type="submit">Remover Professor</button>

@@ -1,6 +1,7 @@
 package com.example.trabalhosd;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,7 @@ public class CursoController {
         return "redirect:/cursos";
     }
 
+
     @PostMapping("/addAlunoToCurso")
     public String addAlunoToCurso(@RequestParam("cursoId") Long cursoId, @RequestParam("alunoId") Long alunoId) {
         cursoService.addAlunoToCurso(cursoId, alunoId);
@@ -62,6 +64,7 @@ public class CursoController {
         cursoService.addProfessorToCurso(cursoId, professorId);
         return "redirect:/cursos";
     }
+
 
     @PostMapping("/removerAlunoFromCurso")
     public String removerAlunoFromCurso(@RequestParam("cursoId") Long cursoId, @RequestParam("alunoId") Long alunoId) {

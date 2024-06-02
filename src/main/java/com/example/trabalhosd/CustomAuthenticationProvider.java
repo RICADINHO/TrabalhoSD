@@ -23,13 +23,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
-        String password = authentication.getCredentials().toString();
+        String password =  authentication.getCredentials().toString();
 
         System.out.println(authentication.getAuthorities()+ "Authenticating user: " + username);
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             System.out.println(password+"--" + userDetails.getPassword());
-        if (userDetails == null || !password.equals(userDetails.getPassword())) {
+        if (userDetails == null || !passwordEncoder.matches(password, userDetails.getPassword())) {
             System.out.println("Authentication failed for user: " + username);
             throw new BadCredentialsException("Invalid username or password");
         }

@@ -1,6 +1,7 @@
 package com.example.trabalhosd;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class AlunoService {
     @Autowired
     private AlunoRepository alunoRepository;
 
+
     public void save(Aluno aluno) {
         int b = 0;
         for(Aluno a : alunoRepository.findAll()){
@@ -23,8 +25,11 @@ public class AlunoService {
                 break;
             }
         }
-            if(b == 0)
+            if(b == 0) {
+                String encodedPassword = new BCryptPasswordEncoder().encode(aluno.getPassword());
+                aluno.setPassword(encodedPassword);
                 alunoRepository.save(aluno);
+            }
     }
 
     public List<Aluno> listAlunos() {
@@ -40,6 +45,8 @@ public class AlunoService {
     }
 
     public void updateAluno(Aluno aluno) {
+        String encodedPassword = new BCryptPasswordEncoder().encode(aluno.getPassword());
+        aluno.setPassword(encodedPassword);
         alunoRepository.save(aluno);
     }
 
