@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomAuthenticationProvider implements AuthenticationProvider {
+public class autenticacao implements AuthenticationProvider {
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -22,20 +22,20 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String username = authentication.getName();
-        String password =  authentication.getCredentials().toString();
+        String nome = authentication.getName();
+        String pass = authentication.getCredentials().toString();
 
-        System.out.println(authentication.getAuthorities()+ "Authenticating user: " + username);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(nome);
+        System.out.println(authentication.getAuthorities()+ "--- " + nome+"---"+userDetails.getAuthorities());
+        System.out.println(pass+"--" + userDetails.getPassword());
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            System.out.println(password+"--" + userDetails.getPassword());
-        if (userDetails == null || !passwordEncoder.matches(password, userDetails.getPassword())) {
-            System.out.println("Authentication failed for user: " + username);
-            throw new BadCredentialsException("Invalid username or password");
+        if (userDetails == null || !passwordEncoder.matches(pass, userDetails.getPassword())) {
+            System.out.println("erro no login " + nome);
+            throw new BadCredentialsException("Nome ou palavra-passe errados");
         }
 
-        System.out.println("Authentication successful for user: " + username);
-        return new UsernamePasswordAuthenticationToken(username, password, userDetails.getAuthorities());
+        System.out.println("deu para " + nome);
+        return new UsernamePasswordAuthenticationToken(nome, pass, userDetails.getAuthorities());
     }
 
     @Override
