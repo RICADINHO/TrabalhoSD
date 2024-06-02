@@ -7,44 +7,44 @@
 </head>
 <body>
 <h1>Adicionar Aluno</h1>
-<h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
+<center><h2><a href="../"> Voltar para trás</a></h2></center>
 <div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
 <form action="#" th:action="@{/addAluno}" th:object="${Aluno}" method="post">
     <div>
-        <label for="nome">Nome:</label>
-        <input required type="text" id="nome" th:field="*{nome}" />
+        <label id="l8" for="i8">Nome:</label>
+        <input id="i8" required type="text" th:field="*{nome}" />
     </div>
     <div>
-        <label for="email">Email:</label>
-        <input required type="email" id="email" th:field="*{email}" />
+        <label id="l7" for="i7">Email:</label>
+        <input id="i7" required type="email"  th:field="*{email}" />
     </div>
     <div>
-        <label for="idade">Idade:</label>
-        <input required type="number" id="idade" th:field="*{idade}" />
+        <label id="l6" for="i6">Idade:</label>
+        <input id="i6" required type="number"  th:field="*{idade}" />
     </div>
     <div>
-        <label for="curso">Curso:</label>
-        <input required type="text" id="curso" th:field="*{curso}" />
+        <label id="l5" for="i5">Curso:</label>
+        <input id="i5" required type="text" th:field="*{curso}" />
     </div>
     <div>
-        <label for="morada">Morada:</label>
-        <input required type="text" id="morada" th:field="*{morada}" />
+        <label id="l4" for="i4">Morada:</label>
+        <input id="i4" required type="text" th:field="*{morada}" />
     </div>
     <div>
-        <label for="telefone">Telefone:</label>
-        <input required type="tel" id="telefone" th:field="*{telefone}" />
+        <label id="l3" for="i3">Telefone:</label>
+        <input id="i3" required type="tel" th:field="*{telefone}" />
     </div>
     <div>
         <label for="nota">Nota:</label>
         <input required type="number" id="nota" th:field="*{nota}" />
     </div>
     <div>
-        <label for="ano">Ano:</label>
-        <input required type="number" id="ano" th:field="*{ano}" />
+        <label id="d2" for="i2">Ano:</label>
+        <input id="i2" required type="number" th:field="*{ano}" />
     </div>
     <div>
-        <label for="password">Password:</label>
-        <input required type="text" id="password" th:field="*{password}" />
+        <label id="d1" for="i1">Password:</label>
+        <input id="i1" required type="text" th:field="*{password}" />
     </div>
     <div>
         <button type="submit">Adicionar Aluno</button>
@@ -52,9 +52,10 @@
 </form>
 </body>
 <script>
-    var x = document.getElementById("ola").textContent;
+    x = document.getElementById("ola").textContent;
+    document.getElementById("ola").style.display = "none";
     console.log(x);
-    if(x != "[ROLE_ADMINISTRADOR]"){
+    if(x == "[ROLE_ALUNO]"){
         document.getElementById("apaga").content = "0; url=../";
     }
 </script>

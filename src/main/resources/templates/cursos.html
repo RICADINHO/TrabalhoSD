@@ -9,13 +9,15 @@
 <body>
 <h1>Lista de Cursos</h1>
 <div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
-<h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
+<center><h2><a href="../"> Voltar para trás</a></h2></center>
 <table border="1">
     <thead>
     <tr>
         <th>Número</th>
         <th>Nome</th>
         <th>Horas</th>
+        <th>Detalhes</th>
+        <th class="tabela">Editar</th>
     </tr>
     <tr id="filterRow">
         <td><input type="text" class="filterInput" data-column="0" placeholder="Filtrar por Número"></td>
@@ -78,8 +80,8 @@
         });
     });
 
-    // RESOLVER ISTO DEPOIS
-    var x = document.getElementById("ola").textContent;
+    x = document.getElementById("ola").textContent;
+    document.getElementById("ola").style.display = "none";
     console.log(x);
     if(x != "[ROLE_ADMINISTRADOR]"){
         x2 = document.getElementsByClassName("tabela");

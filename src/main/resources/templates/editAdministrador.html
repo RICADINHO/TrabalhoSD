@@ -65,7 +65,8 @@
 </head>
 <body>
 <h1>Editar Administrador</h1>
-<h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
+<div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
+<center><h2><a href="../../../../../../../../.."> Voltar para trás</a></h2></center>
 <form action="#" th:action="@{/editAdministrador}" th:object="${admin}" method="post">
     <input type="hidden" th:field="*{numeroAdmin}" />
     <div>
@@ -93,4 +94,12 @@
     </div>
 </form>
 </body>
+<script>
+    x = document.getElementById("ola").textContent;
+    document.getElementById("ola").style.display = "none";
+    console.log(x);
+    if(x != "[ROLE_ADMINISTRADOR]"){
+    document.getElementById("apaga").content = "0; url=../";
+    }
+</script>
 </html>

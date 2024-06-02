@@ -9,12 +9,8 @@
 </head>
 <body>
 <h1>Lista de Alunos</h1>
-<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
 <div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
-<h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
+<center><h2><a href="../"> Voltar para trás</a></h2></center>
 <table border="1">
     <thead>
     <tr>
@@ -27,7 +23,7 @@
         <th>Telefone</th>
         <th>Nota</th>
         <th>Ano</th>
-        <th class="tabela">Password</th>
+        <th class="tabela2">Editar</th>
     </tr>
     <tr id="filterRow">
         <td><input type="text" class="filterInput" data-column="0" placeholder="Filtrar por Número"></td>
@@ -52,13 +48,13 @@
         <td th:text="${aluno.telefone}"></td>
         <td th:text="${aluno.nota}"></td>
         <td th:text="${aluno.ano}"></td>
-        <td class="tabela">
-            <form action="/removerAluno" method="post">
+        <td class="tabela2">
+            <form class="tabela" action="/removerAluno" method="post">
                 <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
                 <input type="hidden" name="id" th:value="${aluno.numeroAluno}">
                 <button type="submit">Remover</button>
             </form>
-            <a class="edit-link" th:href="@{/editAluno/{alunoId}(alunoId=${aluno.numeroAluno})}">Edit</a>
+            <a class="edit-link" th:href="@{/editAluno/{alunoId}(alunoId=${aluno.numeroAluno})}">Editar</a>
         </td>
     </tr>
     </tbody>
@@ -99,15 +95,20 @@
         });
     });
 
-    //content="0; url=../"
-
-    var x = document.getElementById("ola").textContent;
+    x = document.getElementById("ola").textContent;
+    document.getElementById("ola").style.display = "none";
+    x2 = document.getElementsByClassName("tabela");
     console.log(x);
-    if(x != "[ROLE_ADMINISTRADOR]"){
-        //document.getElementById("apaga").content = "0; url=../";
+    if(x == "[ROLE_ALUNO]"){
+        x3 = document.getElementsByClassName("tabela2");
+        for (i = 0; i < x2.length; i++) {
+            x2[i].style.display = "none";
+        }
+        for (i = 0; i < x3.length; i++) {
+            x3[i].style.display = "none";
+        }
     }
-    if(x != "[ROLE_ADMINISTRADOR]"){
-        x2 = document.getElementsByClassName("tabela");
+    if(x == "[ROLE_PROFESSOR]"){
         for (i = 0; i < x2.length; i++) {
             x2[i].style.display = "none";
         }

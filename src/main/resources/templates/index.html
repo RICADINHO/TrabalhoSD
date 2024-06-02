@@ -62,7 +62,7 @@
     </style>
 </head>
 <body>
-<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+<h1 th:inline="text"><span th:remove="tag" sec:authentication="name">thymeleaf</span></h1>
 <div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
@@ -83,16 +83,16 @@
 
 <script>
 
-    var x = document.getElementById("ola").textContent;
+    x = document.getElementById("ola").textContent;
+    document.getElementById("ola").style.display = "none";
     console.log(x);
     if(x == "[ROLE_ALUNO]"){
-        /*document.getElementById("texto1").style.display = "none";
+        document.getElementById("texto1").style.display = "none";
         document.getElementById("texto2").style.display = "none";
         document.getElementById("texto3").style.display = "none";
         document.getElementById("texto4").style.display = "none";
         document.getElementById("texto5").style.display = "none";
         document.getElementById("texto7").style.display = "none";
-        document.getElementById("texto9").style.display = "none";*/
     }else if(x == "[ROLE_PROFESSOR]"){
         document.getElementById("texto1").style.display = "none";
         document.getElementById("texto2").style.display = "none";

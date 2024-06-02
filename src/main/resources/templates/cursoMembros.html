@@ -80,7 +80,7 @@
 <body>
 <h1>Detalhes do Curso</h1>
 <div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
-<a href="/cursos">Voltar para a lista de cursos</a>
+<center><a href="/cursos">Voltar para a lista de cursos</a></center>
 <h2 th:text="'Curso: ' + ${curso.nome}"></h2>
 <p><strong>Número:</strong> <span th:text="${curso.numeroCurso}"></span></p>
 <p><strong>Horas:</strong> <span th:text="${curso.horas}"></span></p>
@@ -126,7 +126,8 @@
 </body>
 <script>
 
-    var x = document.getElementById("ola").textContent;
+    x = document.getElementById("ola").textContent;
+    document.getElementById("ola").style.display = "none";
     if(x != "[ROLE_ADMINISTRADOR]"){
         x2 = document.getElementsByClassName("tabela");
         for (i = 0; i < x2.length; i++) {

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <div id="ola" th:inline="text"><span th:remove="tag" sec:authentication="authorities">thymeleaf</span></div>
     <title>Editar Aluno</title>
     <style>
         body {
@@ -33,7 +34,7 @@
             border-radius: 5px;
         }
 
-        label {
+        div {
             display: block;
             margin-bottom: 5px;
         }
@@ -65,48 +66,73 @@
 </head>
 <body>
 <h1>Editar Aluno</h1>
-<h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
+<center><h2><a href="../"> Voltar para trás</a></h2></center>
 <form action="#" th:action="@{/editAluno}" th:object="${aluno}" method="post">
     <input type="hidden" th:field="*{numeroAluno}" />
     <div>
-        <label for="nome">Nome:</label>
-        <input required type="text" id="nome" th:field="*{nome}" />
+        <div id="l1" >Nome:</div>
+        <input  required type="text" id="i1" th:field="*{nome}" />
     </div>
     <div>
-        <label for="email">Email:</label>
-        <input required type="email" id="email" th:field="*{email}" />
+        <div id="l2" >Email:</div>
+        <input  required type="email" id="i2" th:field="*{email}" />
     </div>
     <div>
-        <label for="idade">Idade:</label>
-        <input required type="number" id="idade" th:field="*{idade}" />
+        <div id="l3" >Idade:</div>
+        <input  required type="number" id="i3" th:field="*{idade}" />
     </div>
     <div>
-        <label for="curso">Curso:</label>
-        <input required type="text" id="curso" th:field="*{curso}" />
+        <div id="l4" >Curso:</div>
+        <input  required type="text" id="i4" th:field="*{curso}" />
     </div>
     <div>
-        <label for="morada">Morada:</label>
-        <input required type="text" id="morada" th:field="*{morada}" />
+        <div id="l5" >Morada:</div>
+        <input  required type="text" id="i5" th:field="*{morada}" />
     </div>
     <div>
-        <label for="telefone">Telefone:</label>
-        <input required type="tel" id="telefone" th:field="*{telefone}" />
+        <div id="l6" >Telefone:</div>
+        <input  required type="tel" id="i6" th:field="*{telefone}" />
     </div>
     <div>
-        <label for="nota">Nota:</label>
+        <div>Nota:</div>
         <input required type="number" id="nota" th:field="*{nota}" />
     </div>
     <div>
-        <label for="ano">Ano:</label>
-        <input required type="number" id="ano" th:field="*{ano}" />
+        <div id="l7" >Ano:</div>
+        <input required type="number" id="i7" th:field="*{ano}" />
     </div>
     <div>
-        <label for="password">Password:</label>
-        <input required type="tel" id="password" th:field="*{password}" />
+        <div id="l8" >Password:</div>
+        <input required type="tel" id="i8" th:field="*{password}" />
     </div>
+    <br>
     <div>
         <button type="submit">Guardar</button>
     </div>
 </form>
 </body>
+<script>
+    x = document.getElementById("ola").textContent;
+    document.getElementById("ola").style.display = "none";
+    x2 = document.getElementById("tabela");
+    console.log(x);
+    if(x == "[ROLE_PROFESSOR]"){
+        document.getElementById("l1").style.display = "none";
+        document.getElementById("l2").style.display = "none";
+        document.getElementById("l3").style.display = "none";
+        document.getElementById("l4").style.display = "none";
+        document.getElementById("l5").style.display = "none";
+        document.getElementById("l6").style.display = "none";
+        document.getElementById("l7").style.display = "none";
+        document.getElementById("l8").style.display = "none";
+        document.getElementById("i1").type = 'hidden';
+        document.getElementById("i2").type = 'hidden';
+        document.getElementById("i3").type = 'hidden';
+        document.getElementById("i4").type = 'hidden';
+        document.getElementById("i5").type = 'hidden';
+        document.getElementById("i6").type = 'hidden';
+        document.getElementById("i7").type = 'hidden';
+        document.getElementById("i8").type = 'hidden';
+    }
+</script>
 </html>

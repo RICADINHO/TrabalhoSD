@@ -46,11 +46,8 @@
     </style>
 </head>
 <body>
-<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
-<h2><a href="../../../../../../../../.."> Voltar para trás</a></h2>
+<center>
+<h2><a href="../../../../../../../../.."> Voltar para trás</a></h2><br>
 <h2>Quantos alunos totais?</h2><br>
 Total de Alunos: <span th:text="${totalAlunos}"></span><br>
 <h2>Quantos professores totais?</h2><br>
@@ -69,6 +66,6 @@ Curso com mais aprovações: <span th:text="${cursoComMaisAprovacoes}"></span><b
 <ul th:each="entry : ${moradasAlunos}">
     <li th:text="${entry.key} + ' (' + ${entry.value} + ')'"></li>
 </ul>
-
+</center>
 </body>
 </html>
