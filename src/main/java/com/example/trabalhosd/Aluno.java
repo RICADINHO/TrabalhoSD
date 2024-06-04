@@ -5,7 +5,6 @@ import lombok.*;
 
 @Data
 @Entity
-//@NoArgsConstructor
 public class Aluno {
 
     @Id

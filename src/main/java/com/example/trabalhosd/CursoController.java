@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-//@RequestMapping(path="/curso")
 public class CursoController {
     @Autowired
     private CursoService cursoService;

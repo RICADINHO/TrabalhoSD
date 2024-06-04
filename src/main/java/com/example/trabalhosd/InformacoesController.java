@@ -35,7 +35,6 @@ public class InformacoesController {
         String cursoComMaisAprovacoes = cursoService.cursoComMaisAprovacoes();
         Map<String, Long> moradasAlunos = alunoService.mostPopularAddresses();
 
-
         model.addAttribute("totalProfs", totalProfs);
         model.addAttribute("totalAlunos", totalAlunos);
         model.addAttribute("totalCursos", totalCursos);

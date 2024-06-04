@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-//@RequestMapping(path="/admin")
 public class AdministradorController {
     @Autowired
     private AdministradorService administradorService;

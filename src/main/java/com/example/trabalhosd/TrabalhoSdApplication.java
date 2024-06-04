@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TrabalhoSdApplication {
 
-	// Para criar as tabelas, basta correr a aplicação
 	public static void main(String[] args) {
 		System.out.println("ola");
 		SpringApplication.run(TrabalhoSdApplication.class, args);
